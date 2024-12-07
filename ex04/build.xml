@@ -1,0 +1,57 @@
+<project    name="Abstract Tree" default ="jar" basedir=".">
+  <property name="build" location="build"/>
+  <property name="classes" location="${build}/classes"/>
+  <property name="dist"    location="jar"/>
+  <property name="src"     location="src"/>
+  <property name="doc.dir" location="html"/>
+
+
+  <target name="init">
+    <mkdir dir="${classes}"/>
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dist}"/>
+  </target>
+
+ <target name="compile" depends="init">
+    <javac srcdir="${src}" destdir="${classes}" includeAntRuntime="false">
+    </javac>
+  </target>
+
+  <target name="jar" depends="compile">
+    <jar jarfile="${dist}/Main.jar" basedir="${classes}">
+     <manifest>
+       <attribute name="Main-Class" value="Main"/>
+     </manifest>
+    </jar>
+  </target>
+
+  <target name="clean">
+    <delete dir="${build}"/>
+    <delete dir="${dist}"/>
+    <delete dir="${doc.dir}"/>
+    <delete file="src.jar"/>
+  </target>
+
+  <target name="run">
+    <java jar="${dist}/Main.jar" fork="true">
+    </java>
+  </target>
+
+  <target name="submit">
+    <jar jarfile="src.jar">
+      <fileset dir="." includes="src/**/*.java" />
+      <fileset dir="." includes="build.xml" />
+      <fileset dir="." includes="html/**/*.*" />
+    </jar>
+  </target>
+
+
+  <target name="doc" depends="jar">
+    <mkdir dir="${doc.dir}"/>
+    <javadoc sourcepath="${src}" destdir="${doc.dir}"
+             encoding="UTF-8"
+             docencoding="UTF-8">
+             <!-- encoding="Shift-JIS" -->
+    </javadoc>
+  </target>
+</project>
