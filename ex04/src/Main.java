@@ -4,35 +4,44 @@ import ast.*;
 import parser.*;
 import lexer.*;
 import java.util.*;
-/* //add
-import java.util.Scanner; */
+/*
+ * //add import java.util.Scanner;
+ */
 import java.io.File;
 
 public class Main {
   public static void main(String[] argv) throws Exception {
     // ファイルから数式を読み込む
     File file = new File("./input.txt");
+    if (!file.exists()) {
+      System.out.println("ファイルが存在しません.input.txtを作成してください");
+      return;
+    }
     BufferedReader br = new BufferedReader(new FileReader(file));
-    String text = br.readLine();
+    String text = "";
+    String line;
+    while ((line = br.readLine()) != null) {
+      text += line + " ";
+    }
+    br.close();
+    text = text.replace("\n", "").trim();
+    System.out.println(text);
     br.close();
 
     // 標準入力から数式を読み込む
-/*     Scanner scanner = new Scanner(System.in);
-    System.out.println("数式を入力してください: ");
-    String text = scanner.nextLine();
-    scanner.close(); */
-    //String text = "-((1+100) *x_1 +z -y) / (-2)";
+    /*
+     * Scanner scanner = new Scanner(System.in); System.out.println("数式を入力してください: "); String text =
+     * scanner.nextLine(); scanner.close();
+     */
+    // String text = "-((1+100) *x_1 +z -y) / (-2)";
     // test Lexer
 
-/*     Lexer lex = new Lexer();
-    lex.init(text);
-    System.out.println(text);
-    Token token;
-
-    do {
-      token = lex.nextToken();
-      System.out.println(token);
-    } while (token.getType() != Token.EOF); */
+    /*
+     * Lexer lex = new Lexer(); lex.init(text); System.out.println(text); Token token;
+     *
+     * do { token = lex.nextToken(); System.out.println(token); } while (token.getType() !=
+     * Token.EOF);
+     */
 
     // end of test Lexer
 
@@ -41,13 +50,13 @@ public class Main {
     variableTable.put("y", 10);
     variableTable.put("z", 1);
 
-//    Expr exp = new BinExpr(new Const(1), "+", new Const(100));
-//    exp = new BinExpr(exp,  "*", new Var("x"));
-//    exp = new BinExpr(exp,  "-", new Var("y"));
-//    exp = new UniExpr(exp, "-");
+    // Expr exp = new BinExpr(new Const(1), "+", new Const(100));
+    // exp = new BinExpr(exp, "*", new Var("x"));
+    // exp = new BinExpr(exp, "-", new Var("y"));
+    // exp = new UniExpr(exp, "-");
 
 
-    Parser parser = new Parser ();
+    Parser parser = new Parser();
     parser.init(text);
     Expr exp = parser.expr();
 
