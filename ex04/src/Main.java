@@ -4,11 +4,17 @@ import ast.*;
 import parser.*;
 import lexer.*;
 import java.util.*;
+//add
+import java.util.Scanner;
 
 public class Main {
   public static void main(String[] argv) {
-
-    String text = "-((1+100) *x_1 +z -y) / (-2)";
+    // 標準入力から数式を読み込む
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("数式を入力してください: ");
+    String text = scanner.nextLine();
+    scanner.close();
+    //String text = "-((1+100) *x_1 +z -y) / (-2)";
 
     // test Lexer
 
