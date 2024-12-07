@@ -4,18 +4,24 @@ import ast.*;
 import parser.*;
 import lexer.*;
 import java.util.*;
-//add
-import java.util.Scanner;
+/* //add
+import java.util.Scanner; */
+import java.io.File;
 
 public class Main {
-  public static void main(String[] argv) {
+  public static void main(String[] argv) throws Exception {
+    // ファイルから数式を読み込む
+    File file = new File("./input.txt");
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    String text = br.readLine();
+    br.close();
+
     // 標準入力から数式を読み込む
-    Scanner scanner = new Scanner(System.in);
+/*     Scanner scanner = new Scanner(System.in);
     System.out.println("数式を入力してください: ");
     String text = scanner.nextLine();
-    scanner.close();
+    scanner.close(); */
     //String text = "-((1+100) *x_1 +z -y) / (-2)";
-
     // test Lexer
 
 /*     Lexer lex = new Lexer();
