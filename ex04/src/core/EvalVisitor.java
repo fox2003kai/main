@@ -28,6 +28,15 @@ public class EvalVisitor extends VisitorAdaptor<Integer> {
   }
 
   /**
+   * このメソッドは、変数名とその値を記号表に登録します。
+   *
+   * @param key 変数名を表す文字列
+   * @param value その変数の値
+   */
+  public void setVariable(String key, Integer value) {
+    variableTable.put(key, value);
+  }
+  /**
    *  このメソッドは変数名に対応する整数値を返します。
    * @param key 変数名
    * @return key に対応する値 ないときは null

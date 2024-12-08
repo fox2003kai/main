@@ -23,7 +23,6 @@ public class Main {
     while ((line = br.readLine()) != null) {
       text += line + " ";
     }
-    br.close();
     text = text.replace("\n", "").trim();
     System.out.println(text);
     br.close();
@@ -64,6 +63,14 @@ public class Main {
     EvalVisitor visitor = new EvalVisitor();
     visitor.setVariableTable(variableTable);
     Integer result = visitor.visit(exp);
+
+    if (text.contains("=")) {
+    parser.parseAssignment();
+    System.out.println("変数が設定されました");
+    } else {
+    Integer results = visitor.visit(exp);
+    System.out.println("結果: " + results);
+    }
 
     System.out.println(variableTable.toString());
     System.out.println(exp + " = " + result);

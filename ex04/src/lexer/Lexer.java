@@ -77,6 +77,10 @@ public class Lexer {
         case -1:
           return new Token(Token.EOF);
 
+        case '=':
+          advance();
+          return  new Token(Token.ASSIGN);
+
         default:
           /* in this simple scanner we just ignore everything else */
           advance();

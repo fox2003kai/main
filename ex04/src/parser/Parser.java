@@ -1,6 +1,7 @@
 import ast.*;
 import lexer.*;
 
+import core.*;
 /**
  * A simple parser for an expression.
  * parsing by Recursive Descent Parsing
@@ -116,4 +117,26 @@ public class Parser {
     }
     return ret;
   }
+  /**
+   * 以下の文法に対応する解析を行い，対応する抽象構文木を返します。
+   * @return 解析結果の抽象構文木
+   *
+   * //assignment ::= ident "=" expr
+   *
+   * @throws RuntimeException もし、識別子が必要な場合、または、'=' が必要な場合
+   */
+  public Expr parseAssignment() {
+    Token ident = lexer.nextToken();
+    if (ident.getType() != Token.IDENT) {
+        throw new RuntimeException("識別子が必要です");
+    }
+    if (ident.getType() != Token.ASSIGN) {
+        throw new RuntimeException("'=' が必要です");
+    }
+    Expr value = expr();
+    EvalVisitor visitor = new EvalVisitor();
+    Integer result = value.accept(visitor);
+    visitor.setVariable(ident.getValue(), result); // 値を記号表に保存
+    return value;
+}
 }
