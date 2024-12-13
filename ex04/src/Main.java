@@ -65,11 +65,11 @@ public class Main {
     Integer result = visitor.visit(exp);
 
     if (text.contains("=")) {
-    parser.parseAssignment();
-    System.out.println("変数が設定されました");
+      parser.parseAssignment();
+      System.out.println("変数が設定されました");
     } else {
-    Integer results = visitor.visit(exp);
-    System.out.println("結果: " + results);
+      Integer results = visitor.visit(exp);
+      System.out.println("結果: " + results);
     }
 
     System.out.println(variableTable.toString());
