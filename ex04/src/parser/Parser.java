@@ -135,7 +135,7 @@ public class Parser {
     }
     Expr value = expr();
     EvalVisitor visitor = new EvalVisitor();
-    Integer result = value.accept(visitor);
+    Integer result = (Integer) value.accept(visitor);
     visitor.setVariable(ident.getValue(), result); // 値を記号表に保存
     return value;
 }
