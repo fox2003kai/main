@@ -38,9 +38,6 @@ public class Token {
   public final static byte NUMBER    = 13;
   /** Token symbol for End of File or String */
   public final static byte EOF       = 14;
-  /** Token symbol for = */
-  public final static byte ASSIGN    = 15;
-
 
   private String [] text = {
     "+", // 0

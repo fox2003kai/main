@@ -130,7 +130,7 @@ public class Parser {
     if (ident.getType() != Token.IDENT) {
         throw new RuntimeException("識別子が必要です");
     }
-    if (ident.getType() != Token.ASSIGN) {
+    if (ident.getType() != Token.EQUAL) {
         throw new RuntimeException("'=' が必要です");
     }
     Expr value = expr();
